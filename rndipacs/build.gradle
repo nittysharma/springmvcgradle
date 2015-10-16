@@ -1,0 +1,56 @@
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'eclipse-wtp' 
+ 
+version = '1.0'
+ 
+// Uses JDK 7
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+ 
+ 
+// 1. Get dependencies from Maven local repository
+// 2. Get dependencies from Maven central repository
+repositories {
+	mavenLocal()
+    mavenCentral()
+}
+dependencies {
+	compile 'ch.qos.logback:logback-classic:0.9.26'
+	compile 'org.springframework:spring-webmvc:4.0.6.RELEASE'
+	compile 'javax.servlet:jstl:1.2'
+	compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.13'
+	compile 'com.fasterxml.jackson.core:jackson-annotations:2.5.1'
+	//include in compile only, exclude in the war
+	compile 'javax.servlet:javax.servlet-api:3.0.1'
+	compile 'org.jasypt:jasypt:1.9.2'
+	//compile 'org.hibernate:hibernate-core:4.3.6.Final'
+	compile 'org.hibernate:hibernate-core:4.2.19.Final'
+	compile 'xalan:xalan:2.7.1'
+	compile 'c3p0:c3p0:0.9.0.4'
+	compile 'org.hibernate:hibernate-c3p0:4.1.4.Final'
+	compile 'org.springframework:spring-orm:4.0.6.RELEASE'
+	compile 'commons-codec:commons-codec:1.9'
+	compile 'org.apache.commons:commons-lang3:3.3.2'
+	compile 'commons-collections:commons-collections:3.2.1'
+	compile 'org.jasypt:jasypt-spring3:1.9.0'
+	compile 'commons-dbcp:commons-dbcp:1.4'
+	compile 'org.json:json:20141113'			
+	compile 'org.jasypt:jasypt-spring31:1.9.0'
+	compile 'javax.validation:validation-api:1.0.0.GA'
+	compile 'org.hibernate:hibernate-validator:4.3.0.Final'
+	compile 'mysql:mysql-connector-java:5.1.6'
+	
+}
+
+test {
+    systemProperties 'property': 'value'
+}
+
+uploadArchives {
+    repositories {
+       flatDir {
+           dirs 'repos'
+       }
+    }
+}
